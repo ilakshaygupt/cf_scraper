@@ -57,10 +57,11 @@ def index():
         total_pages = int(request.form.get('total_pages')) 
         user1_submissions = scrape_codeforces_submissions(user1, total_pages)
         user2_submissions = scrape_codeforces_submissions(user2, total_pages)
-
-        return render_template('index.html', user1=user1, user2=user2, user1_submissions=user1_submissions, user2_submissions=user2_submissions)
+        unique_items = [item for item in user1_submissions if item not in user2_submissions]
+        unique_items_2 = [item for item in user2_submissions if item not in user1_submissions]
+        return render_template('index.html', user1=user1, user2=user2, user1_submissions=user1_submissions, user2_submissions=user2_submissions,unique_items=unique_items,unique_items_2=unique_items_2)
     
-    return render_template('index.html', user1=None, user2=None, user1_submissions=None, user2_submissions=None)
+    return render_template('index.html', user1=None, user2=None, user1_submissions=None, user2_submissions=None,unique_items=None,unique_items_2=None)
 
 if __name__ == '__main__':
     app.run(debug=True)

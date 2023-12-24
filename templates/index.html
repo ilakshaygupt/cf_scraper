@@ -51,6 +51,35 @@
         </div>
     </div>
 
+
+    
+    <div class="row mt-4">
+        <div class="col">
+            {% if unique_items %}
+                <h2>Unique Items ({{ user1 }} - Not in {{ user2 }}):</h2>
+                <ul>
+                    {% for submission in unique_items %}
+                        <li><a href="{{ submission.link }}" target="_blank">{{ submission.text }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="col">
+            {% if unique_items_2 %}
+                <h2>Unique Items ({{ user2 }} - Not in {{ user1 }}):</h2>
+                <ul>
+                    {% for submission in unique_items_2 %}
+                        <li><a href="{{ submission.link }}" target="_blank">{{ submission.text }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
+
+    
+</div>
+
     <!-- Bootstrap JS and dependencies (for responsive features) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
