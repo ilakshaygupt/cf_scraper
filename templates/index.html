@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codeforces Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-3">
+        <h1 class="mb-4">Codeforces Tracker</h1>
+        
+        <form method="post">
+            <div class="form-group">
+                <label for="user1">User 1:</label>
+                <input type="text" class="form-control" name="user1" required>
+            </div>
+            <div class="form-group">
+                <label for="user2">User 2:</label>
+                <input type="text" class="form-control" name="user2" required>
+            </div>
+            <div class="form-group">
+                <label for="total_pages">Number of Pages to Scrape:</label>
+                <input type="number" class="form-control" name="total_pages" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Track</button>
+        </form>
+
+        <div class="row mt-4">
+            <div class="col">
+                {% if user1_submissions %}
+                    <h2>{{ user1 }}'s Submissions:</h2>
+                    <ul>
+                        {% for submission in user1_submissions %}
+                            <li><a href="{{ submission.link }}" target="_blank">{{ submission.text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if user2_submissions %}
+                    <h2>{{ user2 }}'s Submissions:</h2>
+                    <ul>
+                        {% for submission in user2_submissions %}
+                            <li><a href="{{ submission.link }}" target="_blank">{{ submission.text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (for responsive features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
