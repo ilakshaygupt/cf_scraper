@@ -28,6 +28,18 @@ def scrape_codeforces_submissions(username, total_pages):
             print(f"Page {page} processed for {username}.")
         else:
             print(f"Failed to retrieve the page {page} for {username}. Status code: {response.status_code}")
+        unique_dicts = {x['link']: x for x in contests_by_length[1]}.values()
+        unique_list_1 = list(unique_dicts)
+        contests_by_length[1] = unique_list_1
+        unique_dicts = {x['link']: x for x in contests_by_length[2]}.values()
+        unique_list_2 = list(unique_dicts)
+        contests_by_length[2] = unique_list_2
+        unique_dicts = {x['link']: x for x in contests_by_length[3]}.values()
+        unique_list_3 = list(unique_dicts)
+        contests_by_length[3] = unique_list_3
+        unique_dicts = {x['link']: x for x in contests_by_length[4]}.values()
+        unique_list_4 = list(unique_dicts)
+        contests_by_length[4] = unique_list_4
         contests_by_length[1].sort(key=lambda x: x["link"])
         contests_by_length[2].sort(key=lambda x: x["link"])
         contests_by_length[3].sort(key=lambda x: x["link"])
