@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 from bs4 import BeautifulSoup
-
+import concurrent.futures
 app = Flask(__name__)
 
 
@@ -62,13 +62,20 @@ def scrape_codeforces_submissions(username, total_pages=1):
 
 
 @app.route('/', methods=['GET', 'POST'])
+
+
 def index():
     if request.method == 'POST':
         user1 = request.form.get('user1')
         user2 = request.form.get('user2')
 
-        user1_submissions = scrape_codeforces_submissions(user1)
-        user2_submissions = scrape_codeforces_submissions(user2)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future_user1 = executor.submit(scrape_codeforces_submissions, user1)
+            future_user2 = executor.submit(scrape_codeforces_submissions, user2)
+
+            user1_submissions = future_user1.result()
+            user2_submissions = future_user2.result()
+
         unique_items = [
             item for item in user1_submissions if item not in user2_submissions]
         unique_items_2 = [
