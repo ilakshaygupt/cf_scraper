@@ -9,13 +9,13 @@ Follow these steps to get the project up and running:
 1. **Clone the repository to your local machine:**
 
     ```bash
-    git clone https://github.com/your-username/codeforces-tracker.git
+    git clone https://github.com/ilakshaygupt/cf_scraper.git
     ```
 
 2. **Navigate to the project directory:**
 
     ```bash
-    cd codeforces-tracker
+    cd cf_scraper
     ```
 
 3. **Install the required Python packages. It's recommended to use a virtual environment:**
